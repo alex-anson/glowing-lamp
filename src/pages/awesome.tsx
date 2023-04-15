@@ -7,7 +7,7 @@ const manrope = Manrope({ subsets: ["latin"] });
 export default function awesome(): JSX.Element {
   return (
     <div
-      className={`flex flex-col place-items-center place-content-center min-h-full gap-12 text-xl mx-6 my-8 text-gray-400 leading-8 ${manrope.className} font-normal`}
+      className={`flex flex-col place-items-center place-content-center min-h-full gap-12 text-xl px-6 my-8 text-gray-400 leading-8 max-w-5xl mx-auto ${manrope.className} font-normal`}
     >
       <h1 className="text-6xl font-light m-0 tracking-wide">hello Next.js</h1>
       <p className="text-center">
