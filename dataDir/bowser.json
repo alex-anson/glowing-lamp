@@ -1,0 +1,9 @@
+{
+    "name": "Bowser",
+    "relationToMario": "Mario's nemesis",
+    "firstYearAppearedIn": 1985,
+    "firstGameAppearedIn": "Super Mario Bros",
+    "isProtagonist": false,
+    "species": "koopa",
+    "slug": "bowser"
+}

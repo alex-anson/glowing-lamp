@@ -1,0 +1,10 @@
+{
+    "name": "Princess Peach",
+    "relationToMario": "Mario's love interest",
+    "firstYearAppearedIn": 1985,
+    "firstGameAppearedIn": "Super Mario Bros",
+    "isProtagonist": true,
+    "species": "human",
+    "catchphrase": "I can't believe I'm kidnapped... again.",
+    "slug": "princess-peach"
+}

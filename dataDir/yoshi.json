@@ -1,0 +1,9 @@
+{
+    "name": "Yoshi",
+    "relationToMario": "Mario's sidekick",
+    "firstYearAppearedIn": 1990,
+    "firstGameAppearedIn": "Super Mario World",
+    "isProtagonist": true,
+    "species": "dinosaur-like",
+    "slug": "yoshi"
+}

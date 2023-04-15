@@ -1,0 +1,10 @@
+{
+    "name": "Donkey Kong",
+    "relationToMario": "Mario's rival",
+    "firstYearAppearedIn": 1981,
+    "firstGameAppearedIn": "Donkey Kong",
+    "isProtagonist": false,
+    "species": "kong",
+    "catchphrase": "My bananas and my buddy, Diddy Kong, they are gone! The Kremlings will pay! I'll hunt them down through every corner of my island, until I have every last banana from my hoard back!",
+    "slug": "donkey-kong"
+}

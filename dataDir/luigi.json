@@ -1,0 +1,10 @@
+{
+    "name": "Luigi",
+    "relationToMario": "Mario's younger twin brother",
+    "firstYearAppearedIn": 1983,
+    "firstGameAppearedIn": "Mario Bros",
+    "isProtagonist": true,
+    "species": "human",
+    "catchphrase": "You just got a-Luigi'd!",
+    "slug": "luigi"
+}

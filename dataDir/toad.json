@@ -1,0 +1,9 @@
+{
+    "name": "Toad",
+    "relationToMario": "Mario's friend",
+    "firstYearAppearedIn": 1988,
+    "firstGameAppearedIn": "Super Mario Bros 2",
+    "isProtagonist": true,
+    "species": "mushroom",
+    "slug": "toad"
+}

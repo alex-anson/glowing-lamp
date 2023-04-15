@@ -1,0 +1,9 @@
+{
+    "name": "Wario",
+    "relationToMario": "Mario's rival",
+    "firstYearAppearedIn": 1992,
+    "firstGameAppearedIn": "Super Mario Land 2: 6 Golden Coins",
+    "isProtagonist": false,
+    "species": "human",
+    "slug": "wario"
+}
