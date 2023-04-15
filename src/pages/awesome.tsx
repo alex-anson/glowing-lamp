@@ -1,76 +1,151 @@
 // Libs
 import Image from "next/image";
+import { Manrope } from "next/font/google";
+
+const manrope = Manrope({ subsets: ["latin"] });
 
 export default function awesome(): JSX.Element {
   return (
-    <div className="flex flex-col place-items-center place-content-center min-h-full gap-6 text-xl mx-6 my-8 text-teal-600">
+    <div
+      className={`flex flex-col place-items-center place-content-center min-h-full gap-10 text-xl mx-6 my-8 text-gray-400 ${manrope.className} font-normal`}
+    >
+      <h2 className="text-6xl font-light m-0 tracking-wide">hello Next.js</h2>
       <p className="text-center">
         <span className="bg-teal-300 text-gray-900 px-1 pb-0.5">note:</span>{" "}
         this example repo does not use the <Code text="app" /> directory BECAUSE
         it is{" "}
         <a
-          className="border-b-2 border-current hover:text-teal-400"
+          className="border-b-2 border-current hover:text-teal-600 transition-colors"
           href="https://beta.nextjs.org/docs/upgrade-guide#migrating-from-pages-to-app"
         >
           not suitable for production
         </a>
-        . <br />
+        , as of now.
+        <a className="text-teal-500" href="#ifContentChanges">
+          *** <span className="text-xs">click me</span>
+        </a>
+        <br />
         (therefore, the questions will be answered from that viewpoint.)
       </p>
+      <hr className="border-gray-500 h-1 w-full" />
       <p>
         <Code text="npx create-next-app@latest --tailwind app-name" /> will
         create a new directory called <Code text="app-name" />, inside of which
-        will be a new {getNextJsLogo()} project with tailwind installed.{" "}
-        <Code text="app-name" /> will be created in the directory you run the
-        command from. <Answers text="(questions 1 & 2)" />
+        will be a new {getNextJsLogo()} project with tailwind installed and
+        ready to go. <Code text="app-name" /> will be created in the directory
+        you run the command from.
+        <br />
+        <Answers text="(questions 1 & 2)" />
       </p>
+      <hr className="border-gray-500 h-1 w-full" />
       <p>
-        routing in {getNextJsLogo()} is done based on the file system - each
-        file in the <Code text="pages" /> directory represents a route. this is
-        done automagically... i.e., i made this <Code text="`awesome.tsx`" />{" "}
-        file within the <Code text="pages" /> directory, and you&#39;re viewing
-        it on <Code text="localhost:{port}/awesome" />.{" "}
+        routing in {getNextJsLogo()} is done based on the file system &mdash;
+        each file in the <Code text="pages" /> directory represents a route.
+        this is done automagically... i.e., i made this{" "}
+        <Code text="`awesome.tsx`" /> file within the <Code text="pages" />{" "}
+        directory, and you&#39;re viewing it on{" "}
+        <Code text="localhost:{port}/awesome" />.<br />
         <Answers text="(question 3 & partial 4)" />
       </p>
-      <p>
-        the <Code text="app" /> directory replaces the <Code text="pages" />{" "}
-        directory. in the <Code text="app" /> directory, your nested directories
-        define your routes, and the files inside those folders are used to shape
-        the UI. the <Code text="app" /> directory also adds extended
-        functionality as compared with the <Code text="pages" /> directory.
-        TODO: &mdash; it comes with a built-in setup for layouts, templates
-        nested routing*,
-        <Answers text="(question 4 finish)" />
-      </p>
-      <p>
-        * (from the perspective of {getNextJsLogo()} without the experimental{" "}
-        <Code text="app" /> directory) nested routing = a file that&#39;s nested
-        in another directory within the <Code text="pages" /> directory will be
-        routed as one would expect &mdash; i.e.,{" "}
-        <Code text="pages/pets/nina.tsx" /> will be displayed at{" "}
-        <Code text="{hostname}/pets/nina" />.
-      </p>
+      <div className="flex flex-col gap-4">
+        <p>
+          the <Code text="app" /> directory replaces the <Code text="pages" />{" "}
+          directory. (however, the <Code text="pages" /> directory still exists
+          in {getNextJsLogo()}
+          {getThirteenLogo()} for those who need to migrate from 12 to 13.){" "}
+        </p>
+        <p>
+          in the <Code text="app" /> directory, your nested directories define
+          your routes, and the files inside those folders are used to shape the
+          UI.{" "}
+        </p>
+        <p>
+          {" "}
+          the <Code text="app" /> directory adds extended functionality as
+          compared with the <Code text="pages" /> directory. it comes with a
+          built-in setup for layouts (answer for question 8 if i wasn&#39;t
+          answering these based on the <Code text="pages" /> dir), UI for
+          loading and 404 pages, templates nested routing
+          <a href="#nestedRoute" className="text-teal-500 font-black">
+            +
+          </a>
+          , server components
+          <a href="#serverComp" className="text-teal-500 font-black">
+            ++
+          </a>
+          , and muuch more.
+        </p>
+        <p>
+          migrating from using <Code text="pages" /> to <Code text="app" /> “
+          <a
+            className="border-b-2 border-current hover:text-teal-600 transition-colors"
+            href="https://beta.nextjs.org/docs/upgrade-guide#migrating-from-pages-to-app"
+          >
+            means new concepts, mental models, and behavioral changes to learn
+          </a>
+          ”<br />
+          <Answers text="(complete question 4)" />
+        </p>
+        <p>
+          <span id="nestedRoute" className="text-teal-500 font-black">
+            +
+          </span>
+          (without the experimental <Code text="app" /> directory,) nested
+          routing = a file that&#39;s nested in another directory within the{" "}
+          <Code text="pages" /> directory will be routed as one would expect
+          &mdash; i.e., <Code text="pages/pets/nina.tsx" /> will be displayed at{" "}
+          <Code text="{hostname}/pets/nina" />.
+        </p>
+        <p>
+          <span id="serverComp" className="text-teal-500 font-black">
+            ++
+          </span>
+          server components = components that are rendered on the server. this
+          reduces the amount of javascript that the browser needs to handle,
+          which improves performance.
+        </p>
+      </div>
+      <hr className="border-gray-500 h-1 w-full" />
+
       {/* TODO: #5 goes here. */}
       <p>
         the <Code text="<Image/>" /> component displays your images. it is an
         extension of the <Code text="img" /> html tag, it is accessible, and it
-        does lazy loading automatically (as of {getNextJsLogo()}
+        automatically implements lazy loading (as of {getNextJsLogo()}
         {getThirteenLogo()}). it automatically serves the given image with an
         appropriate size, which improves performance. it automatically adds{" "}
         <Code text="height" /> and <Code text="width" /> attributes, which
-        mitigates CLS. <Answers text="(question 6)" />
+        mitigates CLS.
+        <br />
+        <Answers text="(question 6)" />
       </p>
+      <hr className="border-gray-500 h-1 w-full" />
       <p>
         put code you want to run on every route into{" "}
         <Code text="`Layout.tsx`" /> (within the <Code text="pages" />{" "}
         directory). then add the <Code text="Layout" /> component to{" "}
         <Code text="pages/_app.tsx" />, like so:
       </p>
-      <pre className="-mt-4 text-teal-200 leading-3">
-        <Code text={getAppTsxCode()} classes="text-base" />
+      <pre className="-mt-4 text-teal-400 leading-3">
+        <CodeBlock text={getAppTsxCode()} classes="text-xs sm:text-base" />
       </pre>
-      <p className="-mt-4">
-        💥 boom. renders on every route. <Answers text="(question 8)" />
+      <p className="-mt-4 self-start">
+        💥 boom. renders on every route.
+        <br />
+        <Answers text="(question 8)" />
+      </p>
+
+      <hr className="border-gray-500 h-1 w-full mt-14" />
+      <h2 className="text-5xl font-light m-0 tracking-wide">addendums</h2>
+      <p id="ifContentChanges">
+        <span className="text-teal-500">***</span> leaving this here in case the
+        content from the linked source changes.
+        <Image
+          src="/not-in-prod.png"
+          alt="Warning: The App Router is in beta and some conventions could change before stability is reached. We do not recommend using the app directory in production."
+          width={500}
+          height={238.5}
+        />
       </p>
     </div>
   );
@@ -91,16 +166,16 @@ function getNextJsLogo(): JSX.Element {
 
 function getThirteenLogo(): JSX.Element {
   return (
-    // <ThirteenStyles>
-    <Image
-      className="inline-block -mt-1 mx-1"
-      src="/thirteen.svg"
-      alt="Thirteen Logo"
-      width={20}
-      height={15.5}
-      priority
-    />
-    // </ThirteenStyles>
+    <span className="bg-gradient-to-b from-white via-teal-200 to-teal-400 rounded-md mr-1">
+      <Image
+        className="inline-block -mt-1 mx-1"
+        src="/thirteen.svg"
+        alt="Thirteen Logo"
+        width={20}
+        height={15.5}
+        priority
+      />
+    </span>
   );
 }
 
@@ -115,10 +190,27 @@ function getAppTsxCode(): string {
 }
 
 // Injecting styles this way because i'm notoriously lazy.
+// (and I just learned styled components)
 function Code(p: { text: string; classes?: string }): JSX.Element {
-  return <code className={`font-mono ${p.classes}`}>{p.text}</code>;
+  return (
+    <code className={`font-mono bg-gray-800 px-1 text-teal-500 ${p.classes}`}>
+      {p.text}
+    </code>
+  );
+}
+
+function CodeBlock(p: { text: string; classes?: string }): JSX.Element {
+  return (
+    <code className={`font-mono inline-block bg-gray-900 p-2 ${p.classes}`}>
+      {p.text}
+    </code>
+  );
 }
 
 function Answers(p: { text: string }): JSX.Element {
-  return <span className="text-teal-800">{p.text}</span>;
+  return (
+    <span className="text-teal-600 uppercase text-base font-semibold mt-4 inline-block">
+      {p.text}
+    </span>
+  );
 }
