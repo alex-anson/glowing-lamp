@@ -7,16 +7,17 @@ const manrope = Manrope({ subsets: ["latin"] });
 export default function awesome(): JSX.Element {
   return (
     <div
-      className={`flex flex-col place-items-center place-content-center min-h-full gap-10 text-xl mx-6 my-8 text-gray-400 ${manrope.className} font-normal`}
+      className={`flex flex-col place-items-center place-content-center min-h-full gap-12 text-xl mx-6 my-8 text-gray-400 leading-8 ${manrope.className} font-normal`}
     >
-      <h2 className="text-6xl font-light m-0 tracking-wide">hello Next.js</h2>
+      <h1 className="text-6xl font-light m-0 tracking-wide">hello Next.js</h1>
       <p className="text-center">
         <span className="bg-teal-300 text-gray-900 px-1 pb-0.5">note:</span>{" "}
-        this example repo does not use the <Code text="app" /> directory BECAUSE
+        this example repo does not use the <Code text="app" /> directory because
         it is{" "}
         <a
           className="border-b-2 border-current hover:text-teal-600 transition-colors"
           href="https://beta.nextjs.org/docs/upgrade-guide#migrating-from-pages-to-app"
+          target="_blank"
         >
           not suitable for production
         </a>
@@ -35,8 +36,8 @@ export default function awesome(): JSX.Element {
         ready to go. <Code text="app-name" /> will be created in the directory
         you run the command from.
         <br />
-        <Answers text="(questions 1 & 2)" />
       </p>
+      <Answers text="(questions 1 & 2)" />
       <hr className="border-gray-500 h-1 w-full" />
       <p>
         routing in {getNextJsLogo()} is done based on the file system &mdash;
@@ -45,9 +46,13 @@ export default function awesome(): JSX.Element {
         <Code text="`awesome.tsx`" /> file within the <Code text="pages" />{" "}
         directory, and you&#39;re viewing it on{" "}
         <Code text="localhost:{port}/awesome" />.<br />
+      </p>
+      {/* this <p> tag exists solely to override/improve spacing, since there 
+      isn't an <hr /> between the above paragraph and below div */}
+      <p className="-mt-4 mb-10">
         <Answers text="(question 3 & partial 4)" />
       </p>
-      <div className="flex flex-col gap-4">
+      <div className="flex flex-col gap-6">
         <p>
           the <Code text="app" /> directory replaces the <Code text="pages" />{" "}
           directory. (however, the <Code text="pages" /> directory still exists
@@ -80,11 +85,11 @@ export default function awesome(): JSX.Element {
           <a
             className="border-b-2 border-current hover:text-teal-600 transition-colors"
             href="https://beta.nextjs.org/docs/upgrade-guide#migrating-from-pages-to-app"
+            target="_blank"
           >
             means new concepts, mental models, and behavioral changes to learn
           </a>
-          ”<br />
-          <Answers text="(complete question 4)" />
+          ”
         </p>
         <p>
           <span id="nestedRoute" className="text-teal-500 font-black">
@@ -103,7 +108,9 @@ export default function awesome(): JSX.Element {
           server components = components that are rendered on the server. this
           reduces the amount of javascript that the browser needs to handle,
           which improves performance.
+          <br />
         </p>
+        <Answers text="(complete question 4)" />
       </div>
       <hr className="border-gray-500 h-1 w-full" />
 
@@ -117,8 +124,14 @@ export default function awesome(): JSX.Element {
         <Code text="height" /> and <Code text="width" /> attributes, which
         mitigates CLS.
         <br />
-        <Answers text="(question 6)" />
       </p>
+      <Answers text="(question 6)" />
+      <hr className="border-gray-500 h-1 w-full" />
+      <p>
+        {/* TODO: #7 goes here. */}
+        <br />
+      </p>
+      <Answers text="(question 7)" />
       <hr className="border-gray-500 h-1 w-full" />
       <p>
         put code you want to run on every route into{" "}
@@ -132,8 +145,20 @@ export default function awesome(): JSX.Element {
       <p className="-mt-4 self-start">
         💥 boom. renders on every route.
         <br />
-        <Answers text="(question 8)" />
       </p>
+      <Answers text="(question 8)" />
+      <hr className="border-gray-500 h-1 w-full" />
+      <p>
+        {/* TODO: #9 goes here. */}
+        <br />
+      </p>
+      <Answers text="(question 9)" />
+      <hr className="border-gray-500 h-1 w-full" />
+      <p>
+        {/* TODO: #10 goes here. */}
+        <br />
+      </p>
+      <Answers text="(question 10)" />
 
       <hr className="border-gray-500 h-1 w-full mt-14" />
       <h2 className="text-5xl font-light m-0 tracking-wide">addendums</h2>
@@ -141,16 +166,29 @@ export default function awesome(): JSX.Element {
         <span className="text-teal-500">***</span> leaving this here in case the
         content from the linked source changes.
         <Image
+          className="mx-auto mt-2"
           src="/not-in-prod.png"
           alt="Warning: The App Router is in beta and some conventions could change before stability is reached. We do not recommend using the app directory in production."
           width={500}
           height={238.5}
         />
       </p>
+      <hr className="border-gray-500 h-1 w-16" />
+      <p>
+        <a
+          className="border-b-2 border-current hover:text-teal-600 transition-colors"
+          href="https://www.makeuseof.com/nextjs-13-working-of-app-directory/"
+          target="_blank"
+        >
+          good source
+        </a>{" "}
+        for answering #4
+      </p>
     </div>
   );
 }
 
+// SECTION: functions
 function getNextJsLogo(): JSX.Element {
   return (
     <Image
@@ -193,7 +231,9 @@ function getAppTsxCode(): string {
 // (and I just learned styled components)
 function Code(p: { text: string; classes?: string }): JSX.Element {
   return (
-    <code className={`font-mono bg-gray-800 px-1 text-teal-500 ${p.classes}`}>
+    <code
+      className={`font-mono bg-gray-800 px-2 py-0.5 text-teal-500 rounded border border-gray-700 ${p.classes}`}
+    >
       {p.text}
     </code>
   );
@@ -209,7 +249,7 @@ function CodeBlock(p: { text: string; classes?: string }): JSX.Element {
 
 function Answers(p: { text: string }): JSX.Element {
   return (
-    <span className="text-teal-600 uppercase text-base font-semibold mt-4 inline-block">
+    <span className="text-teal-600 uppercase text-base font-semibold mt-4 inline-block self-center">
       {p.text}
     </span>
   );
