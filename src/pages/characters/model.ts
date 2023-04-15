@@ -1,6 +1,6 @@
 export interface Character {
   name: string;
-  relationToMario: string;
+  relationToMario?: string;
   firstYearAppearedIn: number;
   firstGameAppearedIn: string;
   isProtagonist: boolean;
