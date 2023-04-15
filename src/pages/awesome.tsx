@@ -13,14 +13,12 @@ export default function awesome(): JSX.Element {
       <p className="text-center">
         <span className="bg-teal-300 text-gray-900 px-1 pb-0.5">note:</span>{" "}
         this example repo does not use the <Code text="app" /> directory because
+        <br />
         it is{" "}
-        <a
-          className="border-b-2 border-current hover:text-teal-600 transition-colors"
+        <Hyperlink
           href="https://beta.nextjs.org/docs/upgrade-guide#migrating-from-pages-to-app"
-          target="_blank"
-        >
-          not suitable for production
-        </a>
+          text="not suitable for production"
+        />
         , as of now.
         <a className="text-teal-500" href="#ifContentChanges">
           *** <span className="text-xs">click me</span>
@@ -35,7 +33,6 @@ export default function awesome(): JSX.Element {
         will be a new {getNextJsLogo()} project with tailwind installed and
         ready to go. <Code text="app-name" /> will be created in the directory
         you run the command from.
-        <br />
       </p>
       <Answers text="(questions 1 & 2)" />
       <hr className="border-gray-500 h-1 w-full" />
@@ -45,7 +42,7 @@ export default function awesome(): JSX.Element {
         this is done automagically... i.e., i made this{" "}
         <Code text="`awesome.tsx`" /> file within the <Code text="pages" />{" "}
         directory, and you&#39;re viewing it on{" "}
-        <Code text="localhost:{port}/awesome" />.<br />
+        <Code text="localhost:{port}/awesome" />.
       </p>
       {/* this <p> tag exists solely to override/improve spacing, since there 
       isn't an <hr /> between the above paragraph and below div */}
@@ -82,55 +79,81 @@ export default function awesome(): JSX.Element {
         </p>
         <p>
           migrating from using <Code text="pages" /> to <Code text="app" /> “
-          <a
-            className="border-b-2 border-current hover:text-teal-600 transition-colors"
+          <Hyperlink
             href="https://beta.nextjs.org/docs/upgrade-guide#migrating-from-pages-to-app"
-            target="_blank"
-          >
-            means new concepts, mental models, and behavioral changes to learn
-          </a>
+            text="means new concepts, mental models, and behavioral changes to learn"
+          />
           ”
         </p>
-        <p>
-          <span id="nestedRoute" className="text-teal-500 font-black">
-            +
-          </span>
-          (without the experimental <Code text="app" /> directory,) nested
-          routing = a file that&#39;s nested in another directory within the{" "}
-          <Code text="pages" /> directory will be routed as one would expect
-          &mdash; i.e., <Code text="pages/pets/nina.tsx" /> will be displayed at{" "}
-          <Code text="{hostname}/pets/nina" />.
-        </p>
-        <p>
-          <span id="serverComp" className="text-teal-500 font-black">
-            ++
-          </span>
-          server components = components that are rendered on the server. this
-          reduces the amount of javascript that the browser needs to handle,
-          which improves performance.
-          <br />
-        </p>
+        <div className="flex flex-col gap-6 bg-gray-800 text-lg mx-4 px-6 py-4 rounded-md">
+          <p>
+            <span id="nestedRoute" className="text-teal-500 font-black">
+              +
+            </span>{" "}
+            (without the experimental <Code text="app" /> directory,) nested
+            routing = a file that&#39;s nested in another directory within the{" "}
+            <Code text="pages" /> directory will be routed as one would expect
+            &mdash; i.e., <Code text="pages/pets/nina.tsx" /> will be displayed
+            at <Code text="{hostname}/pets/nina" />.
+          </p>
+          <p>
+            <span id="serverComp" className="text-teal-500 font-black">
+              ++
+            </span>{" "}
+            server components = components that are rendered on the server. this
+            reduces the amount of javascript that the browser needs to handle,
+            which improves performance.
+          </p>
+        </div>
         <Answers text="(complete question 4)" />
       </div>
       <hr className="border-gray-500 h-1 w-full" />
-
-      {/* TODO: #5 goes here. */}
+      <p>{/* TODO: #5 goes here. */}</p>
+      <Answers text="(question 5)" />
+      <hr className="border-gray-500 h-1 w-full" />
       <p>
         the <Code text="<Image/>" /> component displays your images. it is an
         extension of the <Code text="img" /> html tag, it is accessible, and it
         automatically implements lazy loading (as of {getNextJsLogo()}
         {getThirteenLogo()}). it automatically serves the given image with an
-        appropriate size, which improves performance. it automatically adds{" "}
-        <Code text="height" /> and <Code text="width" /> attributes, which
-        mitigates CLS.
-        <br />
+        appropriate size, which improves performance. it forces the programmer
+        to add <Code text="height" /> and <Code text="width" /> attributes,
+        which lessens CLS.
       </p>
       <Answers text="(question 6)" />
       <hr className="border-gray-500 h-1 w-full" />
-      <p>
-        {/* TODO: #7 goes here. */}
-        <br />
-      </p>
+      <div className="flex flex-col gap-6">
+        <p>
+          there are <span className="font-bold">many</span> options available
+          for{" "}
+          <Hyperlink
+            href="https://nextjs.org/docs/deployment"
+            text="deployment"
+          />
+          . at a high level, a {getNextJsLogo()} app can use a managed service
+          or can be self-hosted. examples of managed servers are vercel
+          (recommended), AWS copilot, google cloud run, heroku, etc. examples of
+          managed serverless: firebase, netlify, etc. alternatively, if the
+          hosting provider supports node.js or docker, you can self-host the
+          app.
+        </p>
+        <p>
+          a {getNextJsLogo()} app can be deployed to any jamstack hosting
+          service if all of the code can run client side &mdash; if your build
+          process only yields static assets. you would follow{" "}
+          <Hyperlink
+            href="https://nextjs.org/docs/advanced-features/static-html-export"
+            text="these docs"
+          />
+          .
+        </p>
+        <p>
+          you would need a {getNextJsLogo()} compatible hosting service if
+          you&#39;re using features that require a server. for example: image
+          optimization, API routes, rewrites/redirects, headers, middleware,
+          etc.
+        </p>
+      </div>
       <Answers text="(question 7)" />
       <hr className="border-gray-500 h-1 w-full" />
       <p>
@@ -142,22 +165,13 @@ export default function awesome(): JSX.Element {
       <pre className="-mt-4 text-teal-400 leading-3">
         <CodeBlock text={getAppTsxCode()} classes="text-xs sm:text-base" />
       </pre>
-      <p className="-mt-4 self-start">
-        💥 boom. renders on every route.
-        <br />
-      </p>
+      <p className="-mt-4 self-start">💥 boom. renders on every route.</p>
       <Answers text="(question 8)" />
       <hr className="border-gray-500 h-1 w-full" />
-      <p>
-        {/* TODO: #9 goes here. */}
-        <br />
-      </p>
+      <p>{/* TODO: #9 goes here. */}</p>
       <Answers text="(question 9)" />
       <hr className="border-gray-500 h-1 w-full" />
-      <p>
-        {/* TODO: #10 goes here. */}
-        <br />
-      </p>
+      <p>{/* TODO: #10 goes here. */}</p>
       <Answers text="(question 10)" />
 
       <hr className="border-gray-500 h-1 w-full mt-14" />
@@ -175,13 +189,10 @@ export default function awesome(): JSX.Element {
       </p>
       <hr className="border-gray-500 h-1 w-16" />
       <p>
-        <a
-          className="border-b-2 border-current hover:text-teal-600 transition-colors"
+        <Hyperlink
           href="https://www.makeuseof.com/nextjs-13-working-of-app-directory/"
-          target="_blank"
-        >
-          good source
-        </a>{" "}
+          text="good source"
+        />{" "}
         for answering #4
       </p>
     </div>
@@ -252,5 +263,17 @@ function Answers(p: { text: string }): JSX.Element {
     <span className="text-teal-600 uppercase text-base font-semibold mt-4 inline-block self-center">
       {p.text}
     </span>
+  );
+}
+
+function Hyperlink(props: { href: string; text: string }): JSX.Element {
+  return (
+    <a
+      className="border-b-2 border-current hover:text-teal-600 transition-colors"
+      href={props.href}
+      target="_blank"
+    >
+      {props.text}
+    </a>
   );
 }
