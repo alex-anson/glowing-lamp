@@ -1,3 +1,29 @@
+# Questions
+
+1. How do you create a new Next.js project?
+2. How do you add Tailwindcss to the project?
+3. How is routing handled in Next.js?
+4. What is the difference (at a very basic level) between the `pages` directory and the experimental `app` directory (next 13)?
+5. Create and discuss pages that demonstrate the various types of rendering Next.js can do:
+   - A. Statically generated page (SSG).
+     1. demonstrate the use of these functions:
+        - `getStaticPaths`
+        - `getStaticProps`
+          - Bonus points if it reads data from a .json file on the file system.
+     2. When would a page be statically generated without using those functions?
+   - B. Server rendered page (SSR)
+     1. demonstrate the use of `getServerSideProps`
+   - C. How do you make known or make sure code is executed client-side?
+6. What does the Next `Image` component do?
+7. What options are available to deploy a Next site? [Discuss, don’t have to deploy]
+   - A. When would you be able to deploy to any “jamstack” website hosting?
+   - B. versus when would you need a Next.js compatible hosting service?
+8. Where would you put code that you want to run on every route?
+9. how do you get IDs and other info from the URL?
+10. What are dynamic routes?
+
+---
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
