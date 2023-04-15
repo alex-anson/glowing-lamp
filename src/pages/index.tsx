@@ -36,7 +36,7 @@ export default function Home() {
           <h1 className="text-2xl font-semibold">
             Get answers{" "}
             <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt; 🦊✨
+              -&gt; 🦊
             </span>
           </h1>
         </div>
