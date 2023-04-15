@@ -35,12 +35,22 @@ export default function Page(
   props: InferGetStaticPropsType<typeof getStaticProps>
 ): JSX.Element {
   return (
-    <div className="mt-20">
-      {props.contentList.map((character, i) => (
-        <Link href={props.paths[i]} key={character.name}>
-          {character.name}
-        </Link>
-      ))}
+    <div className="mt-10 tracking-wide">
+      <h1 className="text-6xl font-light text-center">
+        Pick your favorite Mario Kart character 🏎️
+      </h1>
+
+      <div className="grid sm:grid-cols-2 xl:grid-cols-4 gap-8 mt-20 xl:mt-40">
+        {props.contentList.map((character, i) => (
+          <Link
+            key={character.name}
+            href={props.paths[i]}
+            className="inline rounded-lg border border-transparent px-6 py-4 transition-colors text-teal-500 hover:text-teal-400 hover:border-neutral-700 hover:bg-neutral-800/30 uppercase font-semibold max-w-fit mx-auto"
+          >
+            {character.name}
+          </Link>
+        ))}
+      </div>
     </div>
   );
 }

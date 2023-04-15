@@ -8,7 +8,7 @@ export default function Layout(props: {
   children: React.ReactNode;
 }): JSX.Element {
   return (
-    <div className={manrope.className}>
+    <div className={`${manrope.className} text-gray-400`}>
       <Link href="/">
         <p className="mt-1 ml-1">
           ✨ <span className="bg-teal-300 text-gray-900 px-1 pb-0.5">home</span>
