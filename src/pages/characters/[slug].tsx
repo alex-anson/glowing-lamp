@@ -3,10 +3,11 @@ import { GetStaticPaths, GetStaticProps, InferGetStaticPropsType } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import fs from "fs";
+import path from "path";
 
 // Local
-import { getFileList, readJsonFile } from "@/pages/characters/helpers";
-import { Character } from "./model";
+import { Character } from "@/character.model";
 
 export default function Page(
   props: InferGetStaticPropsType<typeof getStaticProps>
@@ -92,18 +93,21 @@ type UrlParams = {
 };
 
 export const getStaticPaths: GetStaticPaths<UrlParams> = () => {
-  const fileList = getFileList().map((file) => file.replace(".json", ""));
+  const fileListWithExt = fs.readdirSync(path.resolve("dataDir"));
+  const fileList = fileListWithExt.map((file) => file.replace(".json", ""));
   const paths = fileList.map((slug) => ({ params: { slug } }));
 
-  // TODO: what's fallback??
-  return { paths, fallback: true };
+  return { paths, fallback: false };
 };
 
 export const getStaticProps: GetStaticProps<StaticProps, UrlParams> = (ctx) => {
   const fileName = ctx.params?.slug;
   if (!fileName) throw new Error("eeek time to panic 😜");
 
-  const encoded = readJsonFile(`dataDir/${fileName}.json`);
+  const encoded = fs.readFileSync(
+    path.resolve(`dataDir/${fileName}.json`),
+    "utf-8"
+  );
   const content = JSON.parse(encoded) as Character; // Don't typecast like this at home, kids. 💋
 
   return {

@@ -1,10 +1,11 @@
 // Libs
 import { GetStaticProps, InferGetStaticPropsType } from "next";
 import Link from "next/link";
+import fs from "fs";
+import path from "path";
 
 // Local
-import { getFileList, readJsonFile } from "@/pages/characters/helpers";
-import { Character } from "@/pages/characters/model";
+import { Character } from "@/character.model";
 import BackToAnswersLink from "@/components/BackToAnswersLink";
 
 interface Props {
@@ -13,13 +14,13 @@ interface Props {
 }
 
 export const getStaticProps: GetStaticProps<Props> = () => {
-  const fileList = getFileList();
+  const fileList = fs.readdirSync(path.resolve("dataDir"));
   const paths = fileList.map(
     (file) => "characters/" + file.replace(".json", "")
   );
 
   const encodedList = fileList.map((fileName) =>
-    readJsonFile(`dataDir/${fileName}`)
+    fs.readFileSync(path.resolve(`dataDir/${fileName}`), "utf-8")
   );
 
   const contentList = encodedList.map((json) =>
