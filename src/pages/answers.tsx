@@ -2,7 +2,7 @@
 import Image from "next/image";
 
 // Local
-import FoxLink from "@/components/FoxLink";
+import WannaSeeLink from "@/components/WannaSeeLink";
 import {
   Code,
   Hyperlink,
@@ -154,10 +154,11 @@ export default function answers(): JSX.Element {
           <Code text="getStaticPaths" /> or <Code text="getStaticProps" /> if
           the page doesn&#39;t require any data fetching or dynamic content.
         </p>
-        <FoxLink
-          href="/characters"
-          text="wanna read some json in from the filesystem?"
-        />
+        <WannaSeeLink href="/characters">
+          <span>wanna read some json in</span>
+          <br />
+          <span> from the filesystem?</span>
+        </WannaSeeLink>
 
         <Answers text="SSR: server-side rendering" />
         <p>
@@ -176,7 +177,11 @@ export default function answers(): JSX.Element {
           SSR is a powerful tool, but it should only be used when necessary. it
           increases server load and may slow down page loading times.
         </p>
-        <FoxLink href="/ss-rendered" text="wanna see some fake API data?" />
+        <WannaSeeLink href="/ss-rendered">
+          <span>wanna see some</span>
+          <br />
+          <span> fake API data?</span>
+        </WannaSeeLink>
         <p>
           to ensure certain code is only executed client-side, use{" "}
           {getNextJsLogo()}&#39;s <Code text="dynamic" /> import and set ssr to

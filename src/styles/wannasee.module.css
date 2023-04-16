@@ -1,0 +1,50 @@
+.wannasee {
+  transform: translateZ(0);
+}
+
+.wannasee::before,
+.wannasee::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+}
+
+/* Conic Gradient Animation */
+.wannasee::before {
+  animation: 6s rotate linear infinite;
+  width: 200%;
+  height: 600%;
+  background: conic-gradient(
+    #ffffff90,
+    #ffffff70,
+    #ffffff30,
+    #ffffff20,
+    #ffffff10,
+    #ffffff10,
+    #ffffff90
+  );
+}
+
+/* Inner Square */
+.wannasee::after {
+  inset: 0;
+  padding: 1.5px;
+  border-radius: 0.5rem;
+  background: linear-gradient(
+    to bottom right,
+    hsl(173, 80%, 22%),
+    hsl(176, 69%, 22%),
+    hsl(176, 61%, 19%),
+    hsl(176, 61%, 19%)
+  );
+  background-clip: content-box;
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(360deg);
+  }
+  to {
+    transform: rotate(0deg);
+  }
+}
