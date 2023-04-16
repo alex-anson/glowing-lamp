@@ -31,10 +31,10 @@ export default function Home() {
         </span>
       </div>
 
-      <Link href="/awesome">
+      <Link href="/answers">
         <div className="rounded-lg border border-transparent px-6 py-4 transition-colors hover:border-neutral-700 hover:bg-neutral-800/30">
           <h1 className="text-2xl font-semibold">
-            Get answers{" "}
+            get answers{" "}
             <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
               -&gt; 🦊
             </span>

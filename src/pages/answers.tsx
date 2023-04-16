@@ -4,7 +4,7 @@ import { Manrope } from "next/font/google";
 
 const manrope = Manrope({ subsets: ["latin"] });
 
-export default function awesome(): JSX.Element {
+export default function answers(): JSX.Element {
   return (
     <div
       className={`flex flex-col place-items-center place-content-center min-h-full gap-12 text-xl px-6 my-8 text-gray-400 leading-8 max-w-5xl mx-auto ${manrope.className} font-normal`}
@@ -40,9 +40,9 @@ export default function awesome(): JSX.Element {
         routing in {getNextJsLogo()} is done based on the file system &mdash;
         each file in the <Code text="pages" /> directory represents a route.
         this is done automagically... i.e., i made this{" "}
-        <Code text="`awesome.tsx`" /> file within the <Code text="pages" />{" "}
+        <Code text="`answers.tsx`" /> file within the <Code text="pages" />{" "}
         directory, and you&#39;re viewing it on{" "}
-        <Code text="localhost:{port}/awesome" />.
+        <Code text="localhost:{port}/answers" />.
       </p>
       {/* this <p> tag exists solely to override/improve spacing, since there 
       isn't an <hr /> between the above paragraph and below div */}
@@ -105,8 +105,8 @@ export default function awesome(): JSX.Element {
             which improves performance.
           </p>
         </div>
-        <Answers text="(complete question 4)" />
       </div>
+      <Answers text="(complete question 4)" />
       <hr className="border-gray-500 h-1 w-full" />
       <p>{/* TODO: #5 goes here. */}</p>
       <Answers text="(question 5)" />
@@ -124,7 +124,7 @@ export default function awesome(): JSX.Element {
       <hr className="border-gray-500 h-1 w-full" />
       <div className="flex flex-col gap-6">
         <p>
-          there are <span className="font-bold">many</span> options available
+          there are <span className="font-black">many</span> options available
           for{" "}
           <Hyperlink
             href="https://nextjs.org/docs/deployment"
@@ -168,11 +168,53 @@ export default function awesome(): JSX.Element {
       <p className="-mt-4 self-start">💥 boom. renders on every route.</p>
       <Answers text="(question 8)" />
       <hr className="border-gray-500 h-1 w-full" />
-      <p>{/* TODO: #9 goes here. */}</p>
-      <Answers text="(question 9)" />
-      <hr className="border-gray-500 h-1 w-full" />
-      <p>{/* TODO: #10 goes here. */}</p>
+      <div className="flex flex-col gap-6">
+        <Answers text="10 leads into 9" />
+        <p>
+          dynamic routes allow you to create routes that include parameters
+          (/placeholders), which can be used to match urls containing arbitrary
+          path segments.
+        </p>
+        <p>
+          using this app as an example,{" "}
+          <Code text="pages/characters/[slug].tsx" /> will match everything from{" "}
+          <Code text="localhost:{port}/characters/fox-moose" /> to{" "}
+          <Code text="localhost:{port}/characters/12" />. the route just has to
+          begin with <Code text="/characters" /> for matching to occur.{" "}
+          <span className="text-lg">
+            (to be clear, it will not match{" "}
+            <span className="font-black">just</span> <Code text="/characters" />
+            )
+          </span>
+        </p>
+      </div>
       <Answers text="(question 10)" />
+      <hr className="border-gray-500 h-1 w-full" />
+      <div className="flex flex-col gap-6">
+        <p>
+          (continuing to use this repo as the example)
+          <br />
+          within <Code text="pages/characters/[slug].tsx" />, i could access the
+          value of <Code text="slug" /> (referred to as “IDs” in the question)
+          by leveraging {getNextJsLogo()}&#39;s <Code text="useRouter" /> hook,
+          as follows:
+        </p>
+        <pre className="text-teal-400 leading-3 mx-auto">
+          <CodeBlock text={getRouterCode()} classes="text-xs sm:text-base" />
+        </pre>
+        <p>
+          say i visited <Code text="{hostname}/characters/toad" /> -&gt; i would
+          get the query object <Code text='{ "slug": "toad" }' />.
+        </p>
+        <p>
+          getting query parameters from the url:
+          <br />
+          <Code text="{hostname}/characters/toad?my=fave&mario=kart" /> yields
+          query object -&gt;{" "}
+          <Code text='{ "slug": "toad", "my": "fave", "mario": "kart" }' />.
+        </p>
+      </div>
+      <Answers text="(question 9)" />
 
       <hr className="border-gray-500 h-1 w-full mt-14" />
       <h2 className="text-5xl font-light m-0 tracking-wide">addendums</h2>
@@ -236,6 +278,17 @@ function getAppTsxCode(): string {
     </Layout>
   );
 }`;
+}
+
+function getRouterCode(): string {
+  return `import { useRouter } from "next/router";
+
+export default function Page(
+  // ...
+  const router = useRouter();
+  const { slug } = router.query;
+  // ...
+`;
 }
 
 // Injecting styles this way because i'm notoriously lazy.
