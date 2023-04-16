@@ -1,6 +1,8 @@
 // Libs
 import { GetStaticPaths, GetStaticProps, InferGetStaticPropsType } from "next";
+import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/router";
 
 // Local
 import { getFileList, readJsonFile } from "@/pages/characters/helpers";
@@ -9,13 +11,26 @@ import { Character } from "./model";
 export default function Page(
   props: InferGetStaticPropsType<typeof getStaticProps>
 ) {
+  const router = useRouter();
+  const { slug } = router.query;
+
   return (
     <div className="mt-4 sm:mt-0 mb-10">
       <h1 className="text-6xl font-light text-center tracking-wide">
         {props.content.name}
       </h1>
-      {/* TODO: character image */}
-      <div className="grid place-content-center gap-10 mt-20 mx-4">
+      <div className="w-48 h-auto mx-auto my-10 sm:ml-12">
+        <Image
+          className="relative"
+          src={`/characters/${slug}.webp`}
+          alt={props.content.name}
+          priority
+          // again... don't typecast like this at home.
+          width={getImgWidth(slug as string)}
+          height={getImgHeight(slug as string)}
+        />
+      </div>
+      <div className="grid place-content-center gap-10 mx-4">
         {props.content.relationToMario && (
           <Article>
             <P1>Relation to Mario</P1>
@@ -54,7 +69,7 @@ export default function Page(
               <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
                 &lt;-
               </span>{" "}
-              play again
+              pick again
             </h1>
           </div>
         </Link>
@@ -64,7 +79,7 @@ export default function Page(
             href="https://www.mariowiki.com"
             target="_blank"
           >
-            data &amp; image source
+            data source
           </a>
         </cite>
       </div>
@@ -111,4 +126,34 @@ function Article(props: { children: React.ReactNode }): JSX.Element {
 // because i'm lazy.
 function P1(props: { children: React.ReactNode }): JSX.Element {
   return <p className="text-2xl sm:mr-8 text-teal-600">{props.children}</p>;
+}
+
+// helpers for sizing the images accurately
+const sizes = [
+  { mario: { width: 881, height: 907 } },
+  { bowser: { width: 960, height: 960 } },
+  { "donkey-kong": { width: 299, height: 339 } },
+  { luigi: { width: 1200, height: 1142 } },
+  { "princess-peach": { width: 376, height: 469 } },
+  { toad: { width: 496, height: 380 } },
+  { wario: { width: 839, height: 952 } },
+  { yoshi: { width: 343, height: 400 } },
+] as const;
+
+function getImgWidth(slug: string): number {
+  const x = sizes.flatMap((obj) => {
+    return Object.entries(obj)
+      .filter(([key]) => key === slug)
+      .flat();
+  });
+  return x[1]["width"];
+}
+
+function getImgHeight(slug: string): number {
+  const x = sizes.flatMap((obj) => {
+    return Object.entries(obj)
+      .filter(([key]) => key === slug)
+      .flat();
+  });
+  return x[1]["height"];
 }
