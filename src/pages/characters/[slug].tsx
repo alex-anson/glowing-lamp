@@ -66,10 +66,7 @@ export default function Page(
         <Link href="/characters" className="inline-block">
           <div className="inline-block rounded-lg border border-transparent px-6 py-4 transition-colors hover:border-neutral-700 hover:bg-neutral-800/30 font-semibold">
             <h1 className="text-2xl">
-              <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-                &lt;-
-              </span>{" "}
-              pick again
+              <span className="inline-block">&lt;-</span> pick again
             </h1>
           </div>
         </Link>

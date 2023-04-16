@@ -1,6 +1,7 @@
 // Libs
 import Image from "next/image";
 import { Manrope } from "next/font/google";
+import Link from "next/link";
 
 const manrope = Manrope({ subsets: ["latin"] });
 
@@ -108,7 +109,87 @@ export default function answers(): JSX.Element {
       </div>
       <Answers text="(complete question 4)" />
       <hr className="border-gray-500 h-1 w-full" />
-      <p>{/* TODO: #5 goes here. */}</p>
+      <div className="flex flex-col gap-6">
+        <Answers text="SSG: static-site generation" />
+        <p>
+          pages that use SSG are pre-rendered during the build process &mdash;
+          the server generates static html files, which are then served to the
+          user directly from the web server. since the server doesn&#39;t have
+          to generate these files when a user visits the site, pages load more
+          quickly (read: improved performance).
+        </p>
+        <p>
+          SSG is achieved by leveraging <Code text="getStaticProps" />.{" "}
+          <Code text="getStaticProps" /> fetches data at build time, passing
+          this data to the page component as props.
+        </p>
+        <p>
+          <Code text="getStaticPaths" /> is used to generate dynamic routes for
+          a page. allows me to specify a list of paths that should be
+          pre-rendered at build time.
+        </p>
+        <p>
+          using my repo as the example...
+          <br />
+          <Code text="pages/characters/[slug].tsx" /> -&gt; i use{" "}
+          <Code text="getStaticPaths" /> to read the JSON file names from the
+          filesystem. those file names (minus the .json extension) become part
+          of the dynamic routes. i use <Code text="getStaticProps" /> to grab
+          the slug, using that to read in the JSON file that corresponds to the
+          given slug. then i pass the JSON content as props to the Page
+          component.
+        </p>
+        <p>
+          a page would be statically generated without using{" "}
+          <Code text="getStaticPaths" /> or <Code text="getStaticProps" /> if
+          the page doesn&#39;t require any data fetching or dynamic content.
+        </p>
+        <Link href="/characters">
+          <div className="rounded-lg border border-transparent px-6 py-4 transition-colors text-teal-500 hover:text-teal-400 hover:border-neutral-700 hover:bg-neutral-800/30 max-w-fit mx-auto">
+            <h1 className="text-2xl font-semibold">
+              wanna read some json in from the filesystem?
+            </h1>
+          </div>
+        </Link>
+
+        <Answers text="SSR: server-side rendering" />
+        <p>
+          SSR allows dynamic content to be rendered on the server, then served
+          to the user as a fully rendered html page. use SSR for pages that
+          require data fetching that cannot be done at build time.
+        </p>
+        <p>
+          SSR is achieved by leveraging <Code text="getServerSideProps" />.
+          it&#39;s similar to <Code text="getStaticProps" />, but it runs on{" "}
+          <span className="font-black">every request</span> instead of just at
+          build time. <Code text="getServerSideProps" /> fetches the data from
+          the API, then passes it to the Page component as props.
+        </p>
+        <p>
+          SSR is a powerful tool, but it should only be used when necessary. it
+          increases server load and may slow down page loading times.
+        </p>
+        <Link href="/ss-rendered">
+          <div className="rounded-lg border border-transparent px-6 py-4 transition-colors text-teal-500 hover:text-teal-400 hover:border-neutral-700 hover:bg-neutral-800/30 max-w-fit mx-auto">
+            <h1 className="text-2xl font-semibold">
+              wanna see some fake API data?
+            </h1>
+          </div>
+        </Link>
+        <p>
+          to ensure certain code is only executed client-side, use{" "}
+          {getNextJsLogo()}&#39;s <Code text="dynamic" /> import and set ssr to
+          false. example from {getNextJsLogo()}&#39;s{" "}
+          <Hyperlink
+            href="https://nextjs.org/docs/advanced-features/dynamic-import#with-no-ssr"
+            text="website"
+          />{" "}
+          -&gt;
+        </p>
+        <pre className="text-teal-400 leading-3 mx-auto">
+          <CodeBlock text={getDynamicCode()} classes="text-xs md:text-base" />
+        </pre>
+      </div>
       <Answers text="(question 5)" />
       <hr className="border-gray-500 h-1 w-full" />
       <p>
@@ -296,6 +377,14 @@ export default function Page(
   const { slug } = router.query;
   // ...
 `;
+}
+
+function getDynamicCode(): string {
+  return `import dynamic from "next/dynamic";
+
+  const DynamicHeader = dynamic(() => import('../components/header'), {
+    ssr: false,
+  });`;
 }
 
 // Injecting styles this way because i'm notoriously lazy.

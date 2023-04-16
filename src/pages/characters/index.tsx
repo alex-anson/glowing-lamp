@@ -5,6 +5,7 @@ import Link from "next/link";
 // Local
 import { getFileList, readJsonFile } from "@/pages/characters/helpers";
 import { Character } from "@/pages/characters/model";
+import BackToAnswersLink from "@/components/BackToAnswersLink";
 
 interface Props {
   paths: string[];
@@ -51,6 +52,7 @@ export default function Page(
           </Link>
         ))}
       </div>
+      <BackToAnswersLink />
     </div>
   );
 }

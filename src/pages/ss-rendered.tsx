@@ -1,6 +1,9 @@
 // Libs
 import { GetServerSideProps, InferGetServerSidePropsType } from "next";
 
+// Local
+import BackToAnswersLink from "@/components/BackToAnswersLink";
+
 export const getServerSideProps: GetServerSideProps<Props> = async () => {
   const res = await fetch("https://dummyjson.com/products?limit=12");
   const data = await res.json();
@@ -42,6 +45,7 @@ export default function Page(
           );
         })}
       </div>
+      <BackToAnswersLink />
     </div>
   );
 }
