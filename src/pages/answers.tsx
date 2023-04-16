@@ -194,20 +194,27 @@ export default function answers(): JSX.Element {
         <p>
           (continuing to use this repo as the example)
           <br />
-          within <Code text="pages/characters/[slug].tsx" />, i could access the
-          value of <Code text="slug" /> (referred to as “IDs” in the question)
-          by leveraging {getNextJsLogo()}&#39;s <Code text="useRouter" /> hook,
-          as follows:
+          within <Code text="pages/characters/[slug].tsx" />, i access the value
+          of <Code text="slug" /> (referred to as “IDs” in the question) by
+          leveraging {getNextJsLogo()}&#39;s <Code text="useRouter" /> hook, as
+          follows:
         </p>
         <pre className="text-teal-400 leading-3 mx-auto">
           <CodeBlock text={getRouterCode()} classes="text-xs sm:text-base" />
         </pre>
         <p>
-          say i visited <Code text="{hostname}/characters/toad" /> -&gt; i would
-          get the query object <Code text='{ "slug": "toad" }' />.
+          when i visit <Code text="{hostname}/characters/toad" /> -&gt; i have
+          access to the query object <Code text='{ "slug": "toad" }' />. i use
+          this to display the character image.
         </p>
         <p>
-          getting query parameters from the url:
+          <span className="font-black">
+            getting query parameters from the url
+          </span>{" "}
+          <span className="text-lg">
+            (which i&#39;m not leveraging in this project)
+          </span>{" "}
+          -&gt;
           <br />
           <Code text="{hostname}/characters/toad?my=fave&mario=kart" /> yields
           query object -&gt;{" "}
