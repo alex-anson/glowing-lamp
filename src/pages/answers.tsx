@@ -1,14 +1,24 @@
 // Libs
 import Image from "next/image";
-import { Manrope } from "next/font/google";
-import Link from "next/link";
 
-const manrope = Manrope({ subsets: ["latin"] });
+// Local
+import FoxLink from "@/components/FoxLink";
+import {
+  Code,
+  Hyperlink,
+  Answers,
+  CodeBlock,
+  getAppTsxCode,
+  getDynamicCode,
+  getNextJsLogo,
+  getRouterCode,
+  getThirteenLogo,
+} from "@/answers.helpers";
 
 export default function answers(): JSX.Element {
   return (
     <div
-      className={`flex flex-col place-items-center place-content-center min-h-full gap-12 text-xl px-6 my-8 text-gray-400 leading-8 max-w-5xl mx-auto ${manrope.className} font-normal`}
+      className={`flex flex-col place-items-center place-content-center min-h-full gap-12 text-xl px-6 my-8 leading-8 max-w-5xl mx-auto font-normal`}
     >
       <h1 className="text-6xl font-light m-0 tracking-wide">hello Next.js</h1>
       <p className="text-center">
@@ -144,13 +154,10 @@ export default function answers(): JSX.Element {
           <Code text="getStaticPaths" /> or <Code text="getStaticProps" /> if
           the page doesn&#39;t require any data fetching or dynamic content.
         </p>
-        <Link href="/characters">
-          <div className="rounded-lg border border-transparent px-6 py-4 transition-colors text-teal-500 hover:text-teal-400 hover:border-neutral-700 hover:bg-neutral-800/30 max-w-fit mx-auto">
-            <h1 className="text-2xl font-semibold">
-              wanna read some json in from the filesystem?
-            </h1>
-          </div>
-        </Link>
+        <FoxLink
+          href="/characters"
+          text="wanna read some json in from the filesystem?"
+        />
 
         <Answers text="SSR: server-side rendering" />
         <p>
@@ -169,13 +176,7 @@ export default function answers(): JSX.Element {
           SSR is a powerful tool, but it should only be used when necessary. it
           increases server load and may slow down page loading times.
         </p>
-        <Link href="/ss-rendered">
-          <div className="rounded-lg border border-transparent px-6 py-4 transition-colors text-teal-500 hover:text-teal-400 hover:border-neutral-700 hover:bg-neutral-800/30 max-w-fit mx-auto">
-            <h1 className="text-2xl font-semibold">
-              wanna see some fake API data?
-            </h1>
-          </div>
-        </Link>
+        <FoxLink href="/ss-rendered" text="wanna see some fake API data?" />
         <p>
           to ensure certain code is only executed client-side, use{" "}
           {getNextJsLogo()}&#39;s <Code text="dynamic" /> import and set ssr to
@@ -326,103 +327,5 @@ export default function answers(): JSX.Element {
         for answering #4
       </p>
     </div>
-  );
-}
-
-// SECTION: functions
-function getNextJsLogo(): JSX.Element {
-  return (
-    <Image
-      className="relative drop-shadow-[0_0_0.3rem_#ffffff70] invert inline-block -mt-1 mx-1"
-      src="/next.svg"
-      alt="Next.js Logo"
-      width={72}
-      height={14.8}
-      priority
-    />
-  );
-}
-
-function getThirteenLogo(): JSX.Element {
-  return (
-    <span className="bg-gradient-to-b from-white via-teal-200 to-teal-400 rounded-md mr-1">
-      <Image
-        className="inline-block -mt-1 mx-1"
-        src="/thirteen.svg"
-        alt="Thirteen Logo"
-        width={20}
-        height={15.5}
-        priority
-      />
-    </span>
-  );
-}
-
-function getAppTsxCode(): string {
-  return `function App({ Component, pageProps }: AppProps) {
-  return (
-    <Layout>
-      <Component {...pageProps} />
-    </Layout>
-  );
-}`;
-}
-
-function getRouterCode(): string {
-  return `import { useRouter } from "next/router";
-
-export default function Page(
-  // ...
-  const router = useRouter();
-  const { slug } = router.query;
-  // ...
-`;
-}
-
-function getDynamicCode(): string {
-  return `import dynamic from "next/dynamic";
-
-  const DynamicHeader = dynamic(() => import('../components/header'), {
-    ssr: false,
-  });`;
-}
-
-// Injecting styles this way because i'm notoriously lazy.
-// (and I just learned styled components)
-function Code(p: { text: string; classes?: string }): JSX.Element {
-  return (
-    <code
-      className={`font-mono bg-gray-800 px-2 py-0.5 text-teal-500 rounded border border-gray-700 ${p.classes}`}
-    >
-      {p.text}
-    </code>
-  );
-}
-
-function CodeBlock(p: { text: string; classes?: string }): JSX.Element {
-  return (
-    <code className={`font-mono inline-block bg-gray-900 p-2 ${p.classes}`}>
-      {p.text}
-    </code>
-  );
-}
-
-function Answers(p: { text: string }): JSX.Element {
-  return (
-    <span className="text-teal-600 uppercase text-base font-semibold mt-4 inline-block self-center">
-      {p.text}
-    </span>
-  );
-}
-
-function Hyperlink(props: { href: string; text: string }): JSX.Element {
-  return (
-    <a
-      className="border-b-2 border-current hover:text-teal-600 transition-colors"
-      href={props.href}
-      target="_blank"
-    >
-      {props.text}
-    </a>
   );
 }
