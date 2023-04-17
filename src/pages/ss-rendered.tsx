@@ -45,7 +45,7 @@ export default function Page(
           );
         })}
       </div>
-      <BackToAnswersLink />
+      <BackToAnswersLink anchor="apiData" />
     </div>
   );
 }

@@ -44,7 +44,7 @@ export default function Five(): JSX.Element {
           <Code text="getStaticPaths" /> or <Code text="getStaticProps" /> if
           the page doesn&#39;t require any data fetching or dynamic content.
         </p>
-        <WannaSeeLink href="/characters">
+        <WannaSeeLink href="/characters" id="readJson">
           <span>wanna read some json in</span>
           <br />
           <span> from the filesystem?</span>
@@ -67,7 +67,7 @@ export default function Five(): JSX.Element {
           SSR is a powerful tool, but it should only be used when necessary. it
           increases server load and may slow down page loading times.
         </p>
-        <WannaSeeLink href="/ss-rendered">
+        <WannaSeeLink href="/ss-rendered" id="apiData">
           <span>wanna see some</span>
           <br />
           <span> fake API data?</span>

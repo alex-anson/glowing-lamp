@@ -53,7 +53,7 @@ export default function Page(
           </Link>
         ))}
       </div>
-      <BackToAnswersLink />
+      <BackToAnswersLink anchor="readJson" />
     </div>
   );
 }
