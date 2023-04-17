@@ -10,13 +10,18 @@ import Eight from "@/components/sections/Eight";
 import Ten from "@/components/sections/Ten";
 import Nine from "@/components/sections/Nine";
 import Addendums from "@/components/sections/Addendums";
+import styles from "@/styles/hellonextjs.module.css";
 
 export default function answers(): JSX.Element {
   return (
     <div className="flex flex-col place-items-center place-content-center min-h-full gap-12 text-xl px-6 my-8 leading-8 max-w-5xl mx-auto font-normal">
-      <h1 className="text-6xl font-light m-0 tracking-wide text-center">
-        hello Next.js
-      </h1>
+      <div
+        className={`rounded-lg px-6 py-4 text-teal-4 overflow-hidden flex justify-center items-center relative ${styles.hellonextjs}`}
+      >
+        <h1 className="text-6xl font-light m-0 tracking-wide text-center">
+          hello Next.js
+        </h1>
+      </div>
       <p className="text-center">
         <span className="bg-teal-300 text-gray-900 px-1 pb-0.5">note:</span>{" "}
         this example repo does not use the <Code text="app" /> directory because
