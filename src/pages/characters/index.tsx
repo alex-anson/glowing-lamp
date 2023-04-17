@@ -14,21 +14,26 @@ interface Props {
 }
 
 export const getStaticProps: GetStaticProps<Props> = () => {
+  // Get the file names from the data directory (dataDir)
   const fileList = fs.readdirSync(path.resolve("dataDir"));
+  // Create the file path portion of the url
   const paths = fileList.map(
     (file) => "characters/" + file.replace(".json", "")
   );
 
+  // Store the json as a string (from each file, thus array)
   const encodedList = fileList.map((fileName) =>
     fs.readFileSync(path.resolve(`dataDir/${fileName}`), "utf-8")
   );
 
+  // Turn the encoded json back into json
   const contentList = encodedList.map((json) =>
     JSON.parse(json)
   ) as Character[]; // Don't typecast like this at home, kids. 💋
   // I don't feel like putting in the effort to validate the structure 🤫
 
   return {
+    // Pass the paths and json objects to the Page component
     props: { paths, contentList },
   };
 };

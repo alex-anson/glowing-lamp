@@ -4,10 +4,12 @@ import { GetServerSideProps, InferGetServerSidePropsType } from "next";
 // Local
 import BackToAnswersLink from "@/components/BackToAnswersLink";
 
+// Fetch on every request.
 export const getServerSideProps: GetServerSideProps<Props> = async () => {
   const res = await fetch("https://dummyjson.com/products?limit=12");
   const data = await res.json();
   return {
+    // Send data to the Page component
     props: { data },
   };
 };

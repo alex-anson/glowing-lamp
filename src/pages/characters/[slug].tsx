@@ -92,25 +92,34 @@ type UrlParams = {
   slug: string;
 };
 
+// Define the list of paths to be statically generated at build time.
 export const getStaticPaths: GetStaticPaths<UrlParams> = () => {
+  // Get the file names from the data directory (dataDir)
   const fileListWithExt = fs.readdirSync(path.resolve("dataDir"));
   const fileList = fileListWithExt.map((file) => file.replace(".json", ""));
+  // Create `params` object expected by GetStaticPaths<UrlParams>
   const paths = fileList.map((slug) => ({ params: { slug } }));
 
+  // Pass paths to getStaticProps
   return { paths, fallback: false };
 };
 
+// Fetch data at build time.
 export const getStaticProps: GetStaticProps<StaticProps, UrlParams> = (ctx) => {
+  // Get slug / file name, passed from getStaticPaths
   const fileName = ctx.params?.slug;
   if (!fileName) throw new Error("eeek time to panic 😜");
 
+  // Read in & store the json as a string
   const encoded = fs.readFileSync(
     path.resolve(`dataDir/${fileName}.json`),
     "utf-8"
   );
+  // Turn the encoded json back into json
   const content = JSON.parse(encoded) as Character; // Don't typecast like this at home, kids. 💋
 
   return {
+    // Pass the json content to the Page component
     props: { content },
   };
 };
